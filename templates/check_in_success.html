@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Check In Successful!</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='success.css') }}">
+</head>
+<body>
+    <img src="{{ url_for('static', filename='check.png') }}" alt="Check Image" class="check-image">
+    <div class="final-message">
+        <h2>Check In Successful!</h2>
+        <p>You will be redirected back to the check-in page in <span id="countdown">11</span> seconds.</p>
+    </div> 
+    <script type="text/javascript">
+        let countdown = 11;
+        const countdownElement = document.getElementById("countdown");
+
+        function updateCountdown() {
+            if (countdown === 0) {
+                window.location.href = "/";  // Redirect to the default check-in page
+            } else {
+                countdown--;
+                countdownElement.textContent = countdown;
+                setTimeout(updateCountdown, 1000);  // Update countdown every second
+            }
+        }
+
+        // Start countdown as soon as the page loads
+        window.onload = updateCountdown;
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;  /* Default font for the body */
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  /* Centers content vertically */
+    align-items: center;      /* Centers content horizontally */
+    height: 100vh;            /* Ensures the content takes the full height of the page */
+}
+
+/* Image Styles */
+.check-image {
+    display: block;
+    margin: 20px auto;         /* Centers the image and adds space above and below */
+    max-width: 300px;          /* Adjusts size for a medium image */
+    height: auto;              /* Keeps the aspect ratio */
+    border-radius: 10px;       /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    transition: transform 0.3s ease-in-out;  /* Smooth hover transition */
+}
+
+/* Success message */
+.final-message {
+    text-align: center; /* Centers the text inside the div */
+    display: flex;
+    flex-direction: column; /* Aligns the content vertically */
+    justify-content: center; /* Centers the content vertically */
+    align-items: center; /* Centers the content horizontally */
+    margin-top: 20px; /* Adds space between the image and the message */
+    padding: 20px; /* Optional: adds padding for better spacing */
+}
+
+
+/* Success Page Styles */
+#countdown {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #4CAF50;
+}
+
+/* Success message */
+.success-message {
+    font-size: 1.5em;
+    color: #4CAF50;
+    margin-top: 20px;
+}
