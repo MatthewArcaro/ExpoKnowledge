@@ -7,9 +7,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo Image" class="logo">
+    <img src="{{ url_for('static', filename='LAC_Multiservices_logo.jpg') }}" alt="Logo Image" class="logo">
     <div class="Welcome">
-    <h2>Welcome To ExpoKnowledge!</h2>
+    <h2>Welcome To LAC Multiservices!</h2>
     <p>Please Check In Below</p>
     </div>
 
@@ -23,78 +23,52 @@
         <br><br>
 
         <label for="phone-number">Phone Number:</label>
-        <input type="text" id="phone-number" name="phone_number" required>
+        <input type="tel" id="phone-number" name="phone_number" pattern="[0-9]{10}" required>
         <br><br>
 
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required>
         <br><br>
 
-            <!-- Type of Participate selection -->
-            <label for="participate-type">Type of Participate:</label>
-            <select id="participate-type" name="participate_type" onchange="toggleFields()" required>
-                <option value="" disabled selected>Select Option</option>
-                <option value="attendee">Attendee</option>
-                <option value="company">Company</option>
-            </select>
+            <!-- Type of Service selection -->
+        <label for="service-type">What service did you come in for today?</label>
+        <select id="service-type" name="service" required>
+            <option value="" disabled selected>Select Option</option>
+            <option value="Immigration">Immigration</option>
+            <option value="Accounting">Accounting</option>
+            <option value="Real_Estate">Real Estate</option>
+            <option value="Insurance/DMV">Insurance and & DMV Services</option>
+            <option value="Multiservices">Multiservices</option>
+        </select>
 
-    <!-- Company Name Input (Initially hidden) -->
-        <div id="company-name-container" style="display: none;">
-            <label for="company-name">Company Name:</label>
-            <input type="text" id="company-name" name="company_name">
-        </div>
         <br>
 
-     <!-- Number Of guest (Initially hidden) -->
-        <div id="number_of_guests_field" style="display: none;">
-            <label for="number_of_guests">Number of Guests:</label>
-            <input type="number" id="number_of_guests" name="number_of_guests" min="1" max="105">
-        </div>
-        <br>
-
-
+        
+            <!--Who Assisted You today-->
+        <label for="staff">Who helped you out today?</label>
+        <select id="staff" name="staff" required>
+            <option value="" disabled selected>Select Option</option>
+            <option value="Liliana">Liliana Arcaro</option>
+            <option value="Cindy">Cindy Gaviria</option>
+            <option value="Mayra">Mayra Ariza</option>
+            <option value="Adriana">Adriana Gaviria</option>
+         
+        </select>
 
     <!--CHECK BOX FOR UPDATES ON EXPO--> 
+
+        <br>
         <div class="checkbox-container">
             <input type="checkbox" id="opt-in" name="opt_in" value="yes">
-            <label for="opt-in">I want to receive emails and/or texts about future ExpoKnowledge events.</label>
+            <label for="opt-in">I want to receive emails and/or texts about future LAC Multiservices updates.</label>
         </div>
-        <br><br>
+        <br>
 
-        <button type="submit">Check In</button>
+        <button type="submit" aria-label="Submit Check-In Form">Check In</button>
         <br><br>
     </form>
 
 
-    <script>
-        function toggleFields() {
-        var participantType = document.getElementById("participate-type").value;
-        var companyField = document.getElementById("company-name-container");
-        var guestField = document.getElementById("number_of_guests_field");
-
-        var companyInput = document.getElementById("company-name"); // Define input fields correctly
-        var guestInput = document.getElementById("number_of_guests");
-
-        if (participantType === "company") {
-            companyField.style.display = "block";
-            companyInput.setAttribute("required", "true"); // Make required
-            guestField.style.display = "none";
-            guestInput.removeAttribute("required"); // Remove required
-        } else if (participantType === "attendee") {
-            companyField.style.display = "none";
-            companyInput.removeAttribute("required"); // Remove required
-            guestField.style.display = "block";
-            guestInput.setAttribute("required", "true"); // Make required
-        } else {
-            companyField.style.display = "none";
-            companyInput.removeAttribute("required"); // Remove required
-            guestField.style.display = "none";
-            guestInput.removeAttribute("required"); // Remove required
-            }
-        }
-
-    
-    </script>
     
 </body>
 </html>

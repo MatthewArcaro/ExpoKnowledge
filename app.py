@@ -1,5 +1,6 @@
 from flask import Flask, request, redirect, url_for, render_template
 import psycopg2
+import os
 
 app = Flask(__name__)
 
@@ -24,24 +25,19 @@ def check_in():
         last_name = request.form["last_name"]
         phone_number = request.form["phone_number"]
         email = request.form["email"]
-        opt_in = "yes" if "opt_in" in request.form else "no"
+        service=request.form["service"]
+        staff=request.form["staff"]
+        opt_in = True if "opt_in" in request.form else False
 
-        # Get the 'Type of Participate' and 'Company Name' (if applicable)
-        participate_type = request.form["participate_type"]
-        company_name = request.form["company_name"] if participate_type == "company" else None
-
-        # Get number of guests only if attendee is selected
-        number_of_guests = request.form["number_of_guests"] if participate_type == "attendee" else None
 
         # Save to PostgreSQL
         conn = connect_db()
         cur = conn.cursor()
         
-        # Modify the SQL query to include 'number_of_guests'
         cur.execute(
-            "INSERT INTO check_ins (first_name, last_name, phone_number, email, opt_in, participate_type, company_name, number_of_guests) "
-            "VALUES (%s, %s, %s, %s, %s, %s, %s, %s)",
-            (first_name, last_name, phone_number, email, opt_in, participate_type, company_name, number_of_guests)
+            "INSERT INTO check_ins (first_name, last_name, phone_number, email, service, staff, opt_in)"
+            "VALUES (%s, %s, %s, %s, %s, %s, %s)",
+            (first_name, last_name, phone_number, email,service, staff, opt_in)
         )
         conn.commit()
         cur.close()
@@ -57,9 +53,7 @@ def check_in():
 def check_in_success():
     return render_template('check_in_success.html')  # Success page with countdown
 
+
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=10000)
-
-
-##if __name__ == '__main__':
-    ##app.run(debug=True)
+    port = int(os.environ.get('PORT', 10000))
+    app.run(host='0.0.0.0', port=port)
